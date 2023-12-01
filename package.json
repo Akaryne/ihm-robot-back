@@ -1,0 +1,18 @@
+{
+  "name": "ihm-back",
+  "version": "1.0.0",
+  "description": "ihm to control robot by UART",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Kyrian",
+  "license": "MIT",
+  "dependencies": {
+    "serialport": "^12.0.0",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
