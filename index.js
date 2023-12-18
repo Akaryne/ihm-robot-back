@@ -7,7 +7,7 @@ const server = http.createServer();
 const io = socketIo(server, {cors: {origin: '*', methods: ['GET', 'POST']}});
 const port = 8080;
 
-const usbPort = new SerialPort({ path: 'COM6', baudRate: 9600 })
+const usbPort = new SerialPort({ path: 'COM10', baudRate: 9600 })
 const parser = new ReadlineParser({ delimiter: '$' })
 usbPort.pipe(parser)
 const intervalle = 2000; 
@@ -31,11 +31,12 @@ io.on('connection', (socket) => {
 
     parser.on('data', (data) => {
         console.log(data)
-        socket.emit("getSpeed",data)
+        socket.emit("getSpeed",`${data}$`)
     })
 
     socket.on('setSpeed', (data) => {
-        usbPort.write(`S${data}$`)
+        console.log(`Set speed : ${data}`)
+        usbPort.write(`V${data}$`)
     })
 
     socket.on('robotMode', (data) => {
